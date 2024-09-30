@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-4">Your Bookmarks</h1>
+<div class="list-group">
+    {% for bookmark in bookmarks %}
+        <div class="list-group-item">
+            <h5 class="mb-1">{{ bookmark.title }}</h5>
+            <p class="mb-1">URL: <a href="{{ bookmark.url }}" class="text-decoration-none">{{ bookmark.url }}</a></p>
+            <p class="mb-1">Description: {{ bookmark.description }}</p>
+            <p class="mb-1">Rating: {{ bookmark.rating }}</p>
+            <p class="mb-1">Access Count: {{ bookmark.access_count }}</p>
+            <p class="mb-1">Created At: {{ bookmark.created_at }}</p>
+            <p class="mb-1">Last Accessed: {{ bookmark.last_accessed }}</p>
+            <p class="mb-1">Tags: 
+                {% if bookmark.tags %}
+                    {% for tag in bookmark.tags %}
+                        <span class="badge bg-info">{{ tag.name }}</span>
+                    {% endfor %}
+                {% else %}
+                    <span class="badge bg-secondary">No Tags</span>
+                {% endif %}
+            </p>
+        </div>
+    {% else %}
+        <p class="text-muted">No bookmarks found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+/* Define the Outfit font */
+@font-face {
+    font-family: 'Outfit';
+    src: url('Outfit-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900; /* Variable weight range */
+    font-style: normal;
+}
+
+/* Apply the Outfit font to the entire body */
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #121212 /* Replace with your desired color */
+    
+}
+
+.bg {
+    background-color: #282828
+}
+
+.badge-bg{
+    background-color: #466220
+}
+
+.custom-flag-btn {
+    border-color: #728755 !important; /* Change the outline color */
+    color: #728755 !important;        /* Change the icon color */
+}
+
+.custom-flag-btn:hover {
+    background-color: #728755 !important; /* Change background on hover */
+    color: #fff !important;               /* Change icon color on hover */
+}
+
+.custom-hide-btn {
+    border-color: #737471 !important; /* Change the outline color */
+    color: #737471!important;        /* Change the icon color */
+}
+
+.custom-hide-btn:hover {
+    background-color: #737471 !important; /* Change background on hover */
+    color: #fff !important;               /* Change icon color on hover */
+}
+
+.custom-clipboard-btn {
+    color: #fff !important;        /* Change the icon color */
+}
+
+.link-text {
+    font-size: 14px
+}
+
+.py-custom {
+    padding-top: 0.00rem; /* Adjust this value */
+    padding-bottom: 0.15rem; /* Adjust this value */
+}
+
+.mb-custom {
+    margin-bottom: 5px; /* Adjust this value */
+}
+
+

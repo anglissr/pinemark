@@ -1,28 +1,68 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <h1 class="mb-4">Your Bookmarks</h1>
-<div class="list-group">
+<div class="row">
     {% for bookmark in bookmarks %}
-        <div class="list-group-item">
-            <h5 class="mb-1">{{ bookmark.title }}</h5>
-            <p class="mb-1">URL: <a href="{{ bookmark.url }}" class="text-decoration-none">{{ bookmark.url }}</a></p>
-            <p class="mb-1">Description: {{ bookmark.description }}</p>
-            <p class="mb-1">Rating: {{ bookmark.rating }}</p>
-            <p class="mb-1">Access Count: {{ bookmark.access_count }}</p>
-            <p class="mb-1">Created At: {{ bookmark.created_at }}</p>
-            <p class="mb-1">Last Accessed: {{ bookmark.last_accessed }}</p>
-            <p class="mb-1">Tags: 
-                {% if bookmark.tags %}
+    <div class="col-md-6 col-lg-6 col-xl-4 mb-4">
+        <div class="card h-100 border-0 shadow rounded bg">
+            <!-- Image Section -->
+            <div class="position-relative">
+                <img src="https://picsum.photos/400/100" class="card-img-top" alt="{{ bookmark.title }}">
+                <div class="position-absolute top-0 start-0 m-1">
+                    {% if bookmark.tags %}
                     {% for tag in bookmark.tags %}
-                        <span class="badge bg-info">{{ tag.name }}</span>
+                    <span class="badge badge-bg text-white me-1 shadow">{{ tag.name }}</span>
                     {% endfor %}
-                {% else %}
-                    <span class="badge bg-secondary">No Tags</span>
-                {% endif %}
-            </p>
+                    {% endif %}
+                </div>
+                         <!-- Text in Lower Left Corner -->
+            <div class="position-absolute bottom-0 start-0 mb-custom mx-1">
+                <span class="link-text bg-light text-dark px-1 py-custom rounded shadow">{{ bookmark.url }}</span>
+            </div>
+                <!-- Edit Button (3 dots) -->
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="btn-group">
+                        <button class="btn btn-light btn-sm rounded-circle shadow" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-three-dots"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item" href="#">Delete</a></li>
+                        </ul>
+                        <div class="position-absolute top-0 end-0 m-2">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Section -->
+            <div class="card-body d-flex justify-content-between align-items-start">
+                <div>
+                    <h5 class="card-title mb-0">{{ bookmark.title }} <button class="btn btn-sm custom-clipboard-btn rounded"
+                            onclick="navigator.clipboard.writeText('{{ bookmark.url }}')" title="Copy link">
+                            <i class="bi bi-clipboard"></i>
+                        </button></h5>
+                    <p class="card-text">{{ bookmark.description }}</p>
+
+                </div>
+                <div class="d-flex justify-content-end mb-0">
+                    <button class="btn btn-outline-warning btn-sm rounded me-2 custom-flag-btn " title="Flag">
+                        <i class="bi bi-bookmark"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm rounded custom-hide-btn" title="Hide">
+                        <i class="bi bi-eye-slash"></i>
+                    </button>
+                </div>
+            </div>
         </div>
+    </div>
     {% else %}
+    <div class="col-12">
         <p class="text-muted">No bookmarks found.</p>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

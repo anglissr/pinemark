@@ -23,6 +23,8 @@ body {
 
 .custom-flag-btn {
     border-color: #728755 !important; /* Change the outline color */
+    -webkit-text-stroke: 0.5px ;
+    border-width: 2px;
     color: #728755 !important;        /* Change the icon color */
 }
 
@@ -31,7 +33,45 @@ body {
     color: #fff !important;               /* Change icon color on hover */
 }
 
+.toolbar-btn {
+    -webkit-text-stroke: 0.5px ;
+    border-width: 2px;
+    border-color: #737471 !important; /* Change the outline color */
+    color: #737471!important;        /* Change the icon color */
+}
+
+.toolbar-btn:hover {
+    background-color: #737471 !important; /* Change background on hover */
+    color: #fff !important;               /* Change icon color on hover */
+}
+
+.custom-clear-btn {
+    -webkit-text-stroke: 0.5px ;
+    border-width: 2px;
+    border-color: #a23333 !important; /* Change the outline color */
+    color: #a23333!important;        /* Change the icon color */
+}
+
+.custom-clear-btn:hover {
+    background-color: #a23333 !important; /* Change background on hover */
+    color: #fff !important;               /* Change icon color on hover */
+}
+
+.custom-new-btn {
+    -webkit-text-stroke: 0.5px ;
+    border-width: 2px;
+    border-color: #466220 !important; /* Change the outline color */
+    color: #466220!important;        /* Change the icon color */
+}
+
+.custom-new-btn:hover {
+    background-color: #466220!important; /* Change background on hover */
+    color: #fff !important;               /* Change icon color on hover */
+}
+
 .custom-hide-btn {
+    -webkit-text-stroke: 0.5px ;
+    border-width: 2px;
     border-color: #737471 !important; /* Change the outline color */
     color: #737471!important;        /* Change the icon color */
 }
@@ -59,3 +99,25 @@ body {
 }
 
 
+.dropdown-menu a:hover {
+    color: #b5b5b5;
+    background-color: #2b2d28;
+}
+
+.dropdown-menu a {
+    color: #fff;
+    font-weight: 400;
+}
+
+.dropdown-menu {
+    background-color: #2b2d28;
+    border: none;
+}
+
+.align-middle {
+    align-items: center; /* Align items in the center */
+  }
+
+.form-select {
+    background-color: #282828;
+}

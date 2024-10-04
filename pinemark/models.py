@@ -20,7 +20,8 @@ class Bookmark(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
     last_accessed = db.Column(db.DateTime)
-
+    favicon = db.Column(db.String)  # To store the favicon URL
+    screenshot_path = db.Column(db.String)  # To store the path to the screenshot
     # Define relationship to the tags
     tags = db.relationship('Tag', secondary='bookmarks_tags', back_populates='bookmarks')
 

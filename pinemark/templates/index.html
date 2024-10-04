@@ -1,6 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Modal for Adding a New Bookmark
+<div class="modal fade" id="addBookmarkModal" tabindex="-1" aria-labelledby="addBookmarkModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg">
+        <h5 class="modal-title" id="addBookmarkModalLabel">Add New Bookmark</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg">
+        <form id="addBookmarkForm" action="{{ url_for('home') }}" method="POST">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+          </div>
+          <div class="mb-3">
+            <label for="url" class="form-label">URL</label>
+            <input type="url" class="form-control" id="url" name="url" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" style="background-color: #282828;"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+            <input type="text" class="form-control" id="tags" name="tags" placeholder="Comma separated tags">
+          </div>
+          <button type="submit" class="btn btn-primary">Add Bookmark</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+
+<!-- Modal for Adding a New Bookmark -->
+<div class="modal fade" id="addBookmarkModal" tabindex="-1" aria-labelledby="addBookmarkModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h5 class="modal-title mb-2" id="addBookmarkModalLabel">Add New Bookmark</h5>
+        <form id="addBookmarkForm" action="{{ url_for('home') }}" method="POST">
+          <div class="mb-3">
+            <label for="url" class="form-label">URL</label>
+            <input type="url" class="form-control" id="url" name="url" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Bookmark</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Your Bookmarks Header -->
 <h3 class="mb-2">Your Bookmarks</h3>
@@ -17,11 +69,12 @@
     </form>
 
     <!-- Sort dropdown -->
-    <div class="dropdown me-3 mb-2">
-      <button class="btn btn-outline-secondary toolbar-btn dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="dropdown me-3 mb-2 ">
+      <button class="btn btn-outline-secondary toolbar-btn dropdown-toggle" type="button" id="sortDropdown"
+        data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-sort-alpha-down"></i>
       </button>
-      <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+      <ul class="dropdown-menu" style="background-color: #282828" aria-labelledby="sortDropdown">
         <li><a class="dropdown-item" href="#">Title A-Z</a></li>
         <li><a class="dropdown-item" href="#">Date Created</a></li>
         <li><a class="dropdown-item" href="#">Most Accessed</a></li>
@@ -32,24 +85,25 @@
 
     <!-- Filter dropdown -->
     <div class="dropdown me-3 mb-2">
-      <button class="btn btn-outline-secondary toolbar-btn dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn btn-outline-secondary toolbar-btn dropdown-toggle" type="button" id="filterDropdown"
+        data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-funnel-fill"></i>
       </button>
-      <div class="dropdown-menu p-3" aria-labelledby="filterDropdown">
+      <div class="dropdown-menu p-3" style="background-color: #282828" aria-labelledby="filterDropdown">
         <label class="form-label">Tags</label>
         <select class="form-select mb-2" multiple>
           <option>Tag 1</option>
           <option>Tag 2</option>
           <option>Tag 3</option>
         </select>
-        <label class="form-label">Rating</label>
+        <!-- <label class="form-label">Rating</label>
         <select class="form-select mb-2">
           <option value="1">1 Star</option>
           <option value="2">2 Stars</option>
           <option value="3">3 Stars</option>
           <option value="4">4 Stars</option>
           <option value="5">5 Stars</option>
-        </select>
+        </select> -->
         <div class="form-check mb-2">
           <input class="form-check-input" type="checkbox" value="" id="favoritesOnly">
           <label class="form-check-label" for="favoritesOnly">
@@ -68,30 +122,37 @@
     </button>
 
     <!-- Add Bookmark Button -->
-    <button class="btn btn-success-outline custom-new-btn toolbar-btn mb-2" type="button">
+    <button class="btn btn-success-outline custom-new-btn toolbar-btn mb-2" type="button" data-bs-toggle="modal"
+      data-bs-target="#addBookmarkModal">
       <i class="bi bi-plus-circle"></i> New
     </button>
 
   </div>
 </div>
 <div class="row">
-    {% for bookmark in bookmarks %}
-    <div class="col-md-6 col-lg-6 col-xl-4 mb-4">
-        <div class="card h-100 border-0 shadow rounded bg">
-            <!-- Image Section -->
-            <div class="position-relative">
-                <img src="https://picsum.photos/400/100" class="card-img-top" alt="{{ bookmark.title }}">
-                <div class="position-absolute top-0 start-0 m-1">
-                    {% if bookmark.tags %}
-                    {% for tag in bookmark.tags %}
-                    <span class="badge badge-bg text-white me-1 shadow" style="font-weight: 300;">{{ tag.name }}</span>
-                    {% endfor %}
-                    {% endif %}
-                </div>
-                         <!-- Text in Lower Left Corner -->
-            <div class="position-absolute bottom-0 start-0 mb-custom mx-1">
-                <span class="link-text bg-light text-dark px-1 py-custom rounded shadow">{{ bookmark.url }}</span>
-            </div>
+  {% for bookmark in bookmarks %}
+  <div class="col-md-6 col-lg-6 col-xl-4 mb-4">
+    <div class="card h-100 border-0 shadow rounded bg" style="overflow: hidden;">
+      <!-- Image Section -->
+      <div class="position-relative" style="height: 100px; width: 100%;">
+        <img src="{{ url_for('static', filename='screenshots/' + bookmark.screenshot_path.split('/')[-1]) }}" 
+             style="object-fit: cover; height: 100%; width: 100%; object-position: top left; "  
+             class="card-img-top img-fluid" 
+             alt="{{ bookmark.title }}">
+        <div class="position-absolute top-0 start-0 m-1">
+          {% if bookmark.tags %}
+          {% for tag in bookmark.tags %}
+          <span class="badge badge-bg text-white me-1 shadow" style="font-weight: 300;">{{ tag.name }}</span>
+          {% endfor %}
+          {% endif %}
+        </div>
+        <!-- Text in Lower Left Corner -->
+        <div class="position-absolute bottom-0 start-0 mb-custom mx-1 tru">
+          <div class="custom-shadow bg-light text-dark px-1 py-custom rounded" >
+            <p class="card-link mb-0 truc " title="{{ bookmark.url }}"><a href="{{ bookmark.url }}" class="url">{{ bookmark.url }}</a></p>
+          </div>
+        </div>
+        <!--
             <div class="position-absolute bottom-0 end-0 mb-custom mx-1 rating">
                 <span class="link-text bg-light text-dark px-1 py-custom rounded shadow">
                     <i class="bi bi-star" data-value="1"></i>
@@ -101,55 +162,58 @@
                     <i class="bi bi-star" data-value="5"></i>
                 </span>
             </div>
+            -->
 
-                <!-- Edit Button (3 dots) -->
-                <div class="position-absolute top-0 end-0 m-1">
-                    <div class="btn-group">
-                        <button class="btn btn-light btn-sm rounded-circle shadow" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                        <div class="position-absolute top-0 end-0 m-2">
+        <!-- Edit Button (3 dots) -->
+        <div class="position-absolute top-0 end-0 m-1">
+          <div class="btn-group">
+            <button class="btn btn-light btn-sm rounded-circle custom-shadow " data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-three-dots"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end custom-shadow">
+              <li><a class="dropdown-item" href="#">Edit</a></li>
+              <li><a class="dropdown-item" onclick="navigator.clipboard.writeText('{{ bookmark.url }}')">Copy Link</a></li>
+              <li>
+                <form action="{{ url_for('delete_bookmark', bookmark_id=bookmark.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this bookmark?');">
+                    <button type="submit" class="dropdown-item dropdown-item-button">Delete</button>
+                </form>
+            </li>
+            </ul>
+            <div class="position-absolute top-0 end-0 m-2">
 
-                        </div>
-                    </div>
-                </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <!-- Text Section -->
-            <div class="card-body d-flex justify-content-between align-items-start py-2 px-2">
-                <div>
-                    <h5 class="card-title mb-0">{{ bookmark.title }} <button class="btn btn-sm custom-clipboard-btn rounded"
-                            onclick="navigator.clipboard.writeText('{{ bookmark.url }}')" title="Copy link">
-                            <i class="bi bi-clipboard"></i>
-                        </button></h5>
-                    <p class="card-text" style="font-weight: 200;">{{ bookmark.description }}</p>
-
-                </div>
-                <div class="d-flex justify-content-end mb-0">
-                    <button class="btn btn-outline-warning btn-sm rounded me-2 custom-flag-btn " title="Flag">
-                        <i class="bi bi-bookmark"></i>
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm rounded custom-hide-btn" title="Hide">
-                        <i class="bi bi-eye-slash"></i>
-                    </button>
-                </div>
-                
-            </div>
+      <!-- Text Section -->
+      <div class="card-body d-flex justify-content-between align-items-start py-2 px-2">
+        <div>
+          <h5 class="card-title mb-1">{{ bookmark.title }}
+          </h5>
+          <p class="card-text" style="font-weight: 200;">{{ bookmark.description }}</p>
 
         </div>
-    </div>
-    {% else %}
-    <div class="col-12">
-        <p class="text-muted">No bookmarks found.</p>
-    </div>
-    
+        <div class="d-flex justify-content-end mb-0">
+          <button class="btn btn-outline-warning btn-sm rounded me-2 custom-flag-btn " title="Flag">
+            <i class="bi bi-bookmark"></i>
+          </button>
+          <button class="btn btn-outline-secondary btn-sm rounded custom-hide-btn" title="Hide">
+            <i class="bi bi-eye-slash"></i>
+          </button>
+        </div>
 
-    {% endfor %}
+      </div>
+
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12">
+    <p class="text-muted">No bookmarks found.</p>
+  </div>
+
+
+  {% endfor %}
 
 </div>
 {% endblock %}

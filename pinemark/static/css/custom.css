@@ -113,8 +113,8 @@ textarea::placeholder {
 .custom-clear-btn {
     -webkit-text-stroke: 0.5px ;
     border-width: 2px;
-    border-color: #a23333 !important; /* Change the outline color */
-    color: #a23333!important;        /* Change the icon color */
+    border-color: #c83b3b !important; /* Change the outline color */
+    color: #c83b3b!important;        /* Change the icon color */
 }
 
 .custom-clear-btn:hover {
@@ -170,6 +170,16 @@ textarea::placeholder {
     margin-bottom: 5px; /* Adjust this value */
 }
 
+
+
+
+.danger {
+    color: #c83b3b !important; /* Text color */
+}
+
+.danger:hover{
+    color: #a23333 !important; /* Text color */
+}
 
 .dropdown-menu a:hover,
 .dropdown-menu button:hover {
